@@ -2,8 +2,8 @@
 body {
   font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   min-height: 100vh;
   margin: 0;
   background-color: #f0f0f0;
@@ -11,23 +11,29 @@ body {
   padding: 20px;
 }
 
-/* Arama Formunun Ortalanması */
+/* Arama Kutusu Düzenlemesi */
+#search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 form {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   background-color: white;
-  padding: 30px;
+  padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
+  width: 50%;
+  max-width: 600px;
 }
 
 input {
   padding: 10px;
-  margin-bottom: 15px;
+  margin-right: 10px;
   width: 100%;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -35,7 +41,7 @@ input {
 }
 
 button {
-  padding: 12px 20px;
+  padding: 10px 20px;
   background-color: #007bff;
   color: white;
   font-size: 16px;
@@ -51,10 +57,29 @@ button:hover {
 
 /* Yükleme Göstergesi */
 #loading {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
   text-align: center;
   font-size: 18px;
-  margin-top: 20px;
   color: #555;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner-container svg {
+  width: 50px;
+  height: 50px;
 }
 
 /* Galeri Düzeni */
@@ -69,10 +94,46 @@ button:hover {
   margin-top: 20px;
 }
 
-#gallery img {
-  width: 100%; /* Görsellerin genişliğini tamamen kullanacak */
-  height: auto;
+.image-card {
+  background-color: white;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  object-fit: cover; /* Görsellerin kutuya düzgün şekilde sığmasını sağlamak */
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-card:hover {
+  transform: scale(1.05);
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.image-info {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.image-info p {
+  margin: 5px 0;
+}
+
+.image-info .tags {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.image-info strong {
+  color: #007bff;
+}
+
+/* Responsive tasarım - Galeri için daha küçük ekranlarda tek sütun */
+@media screen and (max-width: 768px) {
+  #gallery {
+    grid-template-columns: 1fr;
+  }
 }
