@@ -5,25 +5,67 @@
     <link rel="icon" type="image/svg+xml" href="/goit-js-hw-11/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Search</title>
-    <!-- Gallery stilini dahil ettik -->
+
+    <!-- CSS Bağlantılarını Doğru Ekle -->
+
+    <!-- CSP (Content Security Policy) Düzenlemesi -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://pixabay.com; img-src 'self' data: https://pixabay.com;"
+    />
     <script type="module" crossorigin src="/goit-js-hw-11/index.js"></script>
     <link rel="modulepreload" crossorigin href="/goit-js-hw-11/assets/vendor-5ObWk2rO.js">
     <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/vendor-DumFYO8Z.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/index-Ciaj0C0c.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/styles-DR1AjRBF.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/index-CldwOIIl.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-11/assets/styles-DaL7GJNf.css">
   </head>
   <body>
-    <!-- Sadece Arama Formu -->
-    <form id="search-form">
-      <input type="text" id="search-input" placeholder="Search for images..." />
-      <button type="submit">Search</button>
-    </form>
+    <!-- Arama Formu -->
+    <div id="search-container">
+      <form id="search-form">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search for images..."
+        />
+        <button type="submit">Search</button>
+      </form>
+    </div>
 
     <!-- Yükleme Göstergesi -->
-    <div id="loading" style="display: none">Loading images, please wait...</div>
+    <div id="loading" style="display: none">
+      <div class="spinner-container">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="50"
+          height="50"
+          viewBox="0 0 50 50"
+          fill="none"
+        >
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            stroke="#007bff"
+            stroke-width="5"
+            stroke-dasharray="31.415, 31.415"
+            stroke-linecap="round"
+          >
+            <animate
+              attributeName="stroke-dashoffset"
+              values="31.415;0"
+              dur="1s"
+              keyTimes="0;1"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </svg>
+      </div>
+      <p>Loading images, please wait...</p>
+    </div>
 
     <!-- Galeri Alanı -->
-    <div id="gallery"></div>
+    <div id="gallery" class="gallery"></div>
 
   </body>
 </html>
