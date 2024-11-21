@@ -6,11 +6,10 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const API_KEY = '47185863-23d7cbe33afa61790ac726fc1';
 const BASE_URL = 'https://pixabay.com/api/';
 
-// Arama formu ve galeri alanını seç
 const form = document.querySelector('#search-form');
 const gallery = document.querySelector('#gallery');
 const input = document.querySelector('#search-input');
-const loading = document.querySelector('#loading'); // Yükleme göstergesi
+const loading = document.querySelector('#loading');
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
@@ -18,7 +17,6 @@ form.addEventListener('submit', async e => {
 
   if (!query) return;
 
-  // Yükleme göstergesi için spinner'ı başlatıyoruz
   loading.style.display = 'flex';
   loading.innerHTML = `<div class="spinner-container">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
@@ -28,7 +26,6 @@ form.addEventListener('submit', async e => {
     </svg>
   </div>`;
 
-  // Önceki galeriyi temizle
   gallery.innerHTML = '';
 
   const url = `${BASE_URL}?key=${API_KEY}&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`;
@@ -37,7 +34,6 @@ form.addEventListener('submit', async e => {
     const response = await fetch(url);
     const data = await response.json();
 
-    // Yükleme göstergesi gizle
     loading.style.display = 'none';
 
     if (data.hits.length === 0) {
@@ -66,7 +62,6 @@ form.addEventListener('submit', async e => {
       gallery.insertAdjacentHTML('beforeend', imageCard);
     });
 
-    // SimpleLightbox'ı başlatıyoruz
     const lightbox = new SimpleLightbox('.gallery a', {
       captionsData: 'alt',
       captionDelay: 250,
@@ -74,9 +69,9 @@ form.addEventListener('submit', async e => {
       loop: true,
     });
 
-    lightbox.refresh(); // Yeni öğeler eklendikten sonra refresh metodunu çağırıyoruz
+    lightbox.refresh();
   } catch (error) {
-    loading.style.display = 'none'; // Hata durumunda da göstergemizi gizle
+    loading.style.display = 'none';
     iziToast.error({
       title: 'Error',
       message: 'Failed to fetch images, please try again.',

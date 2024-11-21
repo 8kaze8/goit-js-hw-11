@@ -6,18 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image Search</title>
 
-    <!-- CSS Bağlantılarını Doğru Ekle -->
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="./css/gallery.css" />
 
-    <!-- CSP (Content Security Policy) Düzenlemesi -->
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://pixabay.com; img-src 'self' data: https://pixabay.com;"
     />
   </head>
   <body>
-    <!-- Arama Formu -->
     <div id="search-container">
       <form id="search-form">
         <input
@@ -29,7 +26,6 @@
       </form>
     </div>
 
-    <!-- Yükleme Göstergesi -->
     <div id="loading" style="display: none">
       <div class="spinner-container">
         <svg
@@ -61,7 +57,6 @@
       <p>Loading images, please wait...</p>
     </div>
 
-    <!-- Galeri Alanı -->
     <div id="gallery" class="gallery"></div>
 
     <script type="module" src="./main.js"></script>
